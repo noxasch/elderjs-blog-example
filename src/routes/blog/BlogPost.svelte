@@ -26,4 +26,16 @@
     <h1>Oops!! Markdown not found!</h1>
   {/if}
 </div>
+<!-- Post ToC -->
+<aside class="sidebar">
+  {#if data.tocTree.length > 0}
+  <nav class="post_nav">
+    <ul class="toc_list">
+      {#each data.tocTree as toc}
+        <li class="toc_list_item"><a href="#{toc.id}" rel="nofollow" title="{toc.text}"><span style="font-size: 1rem;"></span>{toc.text}</a></li>
+      {/each}
+    </ul>
+  </nav>
+  {/if}
+</aside>
 

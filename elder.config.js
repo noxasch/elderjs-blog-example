@@ -17,6 +17,27 @@ module.exports = {
   hooks: {
     // disable: ['elderWriteHtmlFileToPublic'], // this is used to disable internal hooks. Uncomment this to disabled writing your files on build.
   },
+  '@elderjs/plugin-markdown': {
+    routes: ['blog'],
+    contents: {
+      blog: 'contents/blog',
+    },
+    useSyntaxHighlighting: {
+      theme: 'nord', // available themes: https://github.com/shikijs/shiki/blob/master/packages/themes/README.md#literal-values - try material-theme-darker
+      // theme is the only option available - for now.
+    },
+    slugFormatter: function (relativeFilePath, frontmatter) {
+      // custom slug - use blog title as slug
+      // default is markdown file name
+      let slug = frontmatter.title
+        .replace(/[^a-zA-Z ]/g, '')
+        .replace(/\s+/g, '-')
+        .toLowerCase();
+      return slug;
+    },
+    useElderJsPluginImages: true,
+    useTableOfContents: true,
+  },
   plugins: {
     '@elderjs/plugin-browser-reload': {
       // this reloads your browser when nodemon restarts your server.
